@@ -77,12 +77,20 @@ content/            Nội dung soạn tay (MDX + dữ liệu TS)
 src/app/            Trang (Next.js App Router) — /hoc, /hop-am, /cong-cu/*, /tong-quan, /nhat-ky …
 src/components/     UI: chord/, lesson/, tools/, progress/, ui/ (shadcn)
 src/lib/music/      Nhạc lý thuần (nốt, hợp âm, lên dây, tìm kiếm)
-src/lib/audio/      Tuner (pitchy), metronome (look-ahead), âm mẫu (Karplus-Strong đúng cao độ)
+src/lib/audio/      Tuner (pitchy), metronome (look-ahead), âm guitar thu âm + tổng hợp dự phòng
 src/lib/progress/   Kho tiến độ (khách + tài khoản, hàng đợi offline), chuỗi ngày
 src/actions/        Server Actions (Supabase)
 supabase/           Migration, seed, truy vấn chỉ tiêu
 tests/unit, tests/e2e
 ```
+
+## Âm thanh guitar
+
+Các nốt guitar trong `public/audio/guitar/` lấy từ bộ âm thanh **Musyng Kite** (qua
+[midi-js-soundfonts](https://github.com/gleitz/midi-js-soundfonts)), giấy phép **CC BY-SA 3.0**: được
+dùng cả cho mục đích thương mại, bắt buộc ghi nguồn (đã có ở chân trang). Xem
+`public/audio/guitar/README.md`. Độ lệch cao độ của từng file được bù khi phát
+(`src/lib/audio/sample-tuning.ts`, kiểm tra bởi `tests/e2e/samples.spec.ts`).
 
 Triển khai: xem [docs/deploy.md](docs/deploy.md).
 # guitar-tutorial-for-beginner

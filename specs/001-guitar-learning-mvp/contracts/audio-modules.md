@@ -59,11 +59,11 @@ khoảng cách giữa các phách đúng 500 ms ± 0.001 ms (SC-004, Constitutio
 ## Âm mẫu — `src/lib/audio/pluck.ts`
 
 ```ts
-playChord(notes: string[], mode: "strum" | "arpeggio"): Promise<void>   // strum: cách 15 ms; arpeggio: 60 ms
+playChord(notes: string[], mode: "strum" | "arpeggio"): Promise<void>   // strum: cách 30 ms; arpeggio: 120 ms
 playNote(note: string, durationSec?: number): Promise<void>             // dùng cho tuner dự phòng
 ```
 
-Tone.js được nạp động ở lần gọi đầu tiên; `AudioContext` chỉ được tạo/resume sau thao tác của
+Âm mẫu được tổng hợp ngay trên thiết bị (`karplus.ts`, Karplus-Strong đúng cao độ ±2 cent); `AudioContext` chỉ được tạo/resume sau thao tác của
 người dùng (chính sách autoplay của trình duyệt).
 
 ## Hook React — `src/hooks/`

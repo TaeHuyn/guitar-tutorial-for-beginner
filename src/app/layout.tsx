@@ -52,10 +52,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SiteNav />
             <main
               id="noi-dung"
-              className="mx-auto w-full max-w-5xl flex-1 px-4 pt-6 pb-24 md:pb-12"
+              className="mx-auto w-full max-w-5xl flex-1 px-4 pt-6 pb-10 md:pb-12"
             >
               {children}
             </main>
+            <footer className="text-muted-foreground mx-auto w-full max-w-5xl border-t px-4 pt-4 pb-24 text-xs md:pb-6">
+              Âm thanh guitar: bộ âm thanh “Musyng Kite” (acoustic guitar steel) qua{" "}
+              <a
+                href="https://github.com/gleitz/midi-js-soundfonts"
+                className="underline underline-offset-2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                midi-js-soundfonts
+              </a>
+              , giấy phép{" "}
+              <a
+                href="https://creativecommons.org/licenses/by-sa/3.0/deed.vi"
+                className="underline underline-offset-2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CC BY-SA 3.0
+              </a>
+              .
+            </footer>
           </ProgressProvider>
         </ServiceWorker>
         <Suspense fallback={null}>

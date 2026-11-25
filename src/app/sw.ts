@@ -1,7 +1,7 @@
 /// <reference lib="webworker" />
 import { defaultCache } from "@serwist/turbopack/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { CacheFirst, ExpirationPlugin, Serwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -20,7 +20,17 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: [
+    // Guitar note recordings never change: keep every note once heard (46 files, ~800 KB).
+    {
+      matcher: ({ url }) => url.pathname.startsWith("/audio/guitar/"),
+      handler: new CacheFirst({
+        cacheName: "guitar-samples",
+        plugins: [new ExpirationPlugin({ maxEntries: 64, maxAgeSeconds: 365 * 24 * 3600 })],
+      }),
+    },
+    ...defaultCache,
+  ],
 });
 
 serwist.addEventListeners();

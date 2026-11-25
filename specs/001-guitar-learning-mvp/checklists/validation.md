@@ -59,6 +59,12 @@
   pitch on some strings and clipping when six strings summed. Replaced by an in-house Karplus-Strong
   with all-pass fractional delay (`src/lib/audio/karplus.ts`): every note the chord library uses is within
   ±2 cents in tests (worst measured 0.08 cents); a compressor on the bus prevents clipping; Tone.js removed.
+- **Chord audio (R4, second revision)**: listening tests against Musicca preferred recorded notes.
+  Now uses the Musyng Kite steel-string soundfont (CC BY-SA 3.0, attributed in the footer and
+  `public/audio/guitar/README.md`), 46 notes E2–C#6 fetched on demand and cached by the service
+  worker; each file's measured pitch error (up to −15 cents) is corrected with `detune` and verified
+  within ±3 cents (`tests/e2e/samples.spec.ts`). Strum gap 40 ms, master −5 dB, no loudness
+  compressor. The Karplus-Strong synth stays as the fallback when a recording can't load.
 - **Chord page redesign**: "{chord} trên đàn guitar" with Sơ đồ / Cần đàn views, note names (solfège),
   left-handed mirroring (remembered per device) and written fingering steps.
 - **Lighthouse CI (T100)** replaced by a Playwright CDP measurement under slow-4G throttling
