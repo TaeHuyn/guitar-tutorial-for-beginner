@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { ChordDiagram } from "@/components/chord/ChordDiagram";
+import { Fretboard } from "@/components/chord/Fretboard";
 import { ChordSchema } from "@/content/schema";
 
 const G = ChordSchema.parse({
@@ -72,11 +73,73 @@ describe("ChordDiagram", () => {
 
   it("shows the base fret when the voicing starts above fret 1", () => {
     render(<ChordDiagram chord={Bm} voicingIndex={1} />);
-    expect(screen.getByText("7fr")).toBeInTheDocument();
+    expect(screen.getByText("7")).toBeInTheDocument();
   });
 
   it("draws a barre", () => {
     const { container } = render(<ChordDiagram chord={Bm} />);
     expect(container.querySelector("[data-barre]")).not.toBeNull();
+  });
+
+  it("mirrors strings for left-handed players", () => {
+    const xOf = (c: HTMLElement) =>
+      [...c.querySelectorAll("line[data-string]")].map((l) => [
+        l.getAttribute("data-string"),
+        Number(l.getAttribute("x1")),
+      ]);
+    const right = render(<ChordDiagram chord={G} />).container;
+    const left = render(<ChordDiagram chord={G} leftHanded />).container;
+    const r = Object.fromEntries(xOf(right));
+    const l = Object.fromEntries(xOf(left));
+    expect(r["6"]).toBeLessThan(r["1"]);
+    expect(l["6"]).toBeGreaterThan(l["1"]);
+  });
+
+  it("puts the starting fret number on the outer side for each hand", () => {
+    const right = render(<ChordDiagram chord={Bm} voicingIndex={1} />).container;
+    const left = render(<ChordDiagram chord={Bm} voicingIndex={1} leftHanded />).container;
+    const x = (c: HTMLElement) => Number(c.querySelector("[data-base-fret]")!.getAttribute("x"));
+    expect(x(right)).toBeLessThan(30);
+    expect(x(left)).toBeGreaterThan(100);
+  });
+
+  it("shows note names (solfège) instead of finger numbers", () => {
+    const { container } = render(<ChordDiagram chord={G} labels="notes" />);
+    const dots = [...container.querySelectorAll("[data-dot]")].map((d) => d.textContent);
+    expect(dots).toEqual(["Sol", "Si", "Sol"]);
+  });
+});
+
+describe("Fretboard", () => {
+  it("draws 6 strings, inlays and the voicing's dots", () => {
+    const { container } = render(<Fretboard chord={G} />);
+    expect(container.querySelectorAll("[data-string-line]")).toHaveLength(6);
+    expect(container.querySelector('[data-inlay="12"]')).not.toBeNull();
+    const dots = [...container.querySelectorAll("[data-dot]")].map(
+      (d) => `${d.getAttribute("data-string")}:${d.getAttribute("data-fret")}:${d.textContent}`,
+    );
+    expect(dots.sort()).toEqual(["1:3:3", "5:2:1", "6:3:2"]);
+  });
+
+  it("labels open strings with note names and muted strings with X", () => {
+    const { container } = render(<Fretboard chord={C} labels="notes" />);
+    const markers = [...container.querySelectorAll("[data-marker]")].map(
+      (m) => `${m.getAttribute("data-string")}${m.textContent ?? ""}`,
+    );
+    expect(markers.sort()).toEqual(["1Mi", "3Sol", "6"]);
+  });
+
+  it("puts the headstock on the right for left-handed players", () => {
+    const pos = (left: boolean) => {
+      const { container } = render(<Fretboard chord={G} leftHanded={left} />);
+      const dot = container.querySelector('[data-dot][data-string="6"] circle')!;
+      return Number(dot.getAttribute("cx"));
+    };
+    expect(pos(false)).toBeLessThan(pos(true));
+  });
+
+  it("draws a barre as one bar", () => {
+    const { container } = render(<Fretboard chord={Bm} voicingIndex={1} />);
+    expect(container.querySelectorAll("[data-barre]")).toHaveLength(1);
   });
 });

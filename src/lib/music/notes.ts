@@ -1,4 +1,4 @@
-import { Midi, Note } from "tonal";
+import { Note } from "tonal";
 
 /** Standard tuning, string 6 (low E) → string 1 (high E). */
 export const STANDARD_TUNING = ["E2", "A2", "D3", "G3", "B3", "E4"] as const;
@@ -55,17 +55,4 @@ export function pitchClass(note: string): PitchClass {
   return SHARP_NAMES[chroma];
 }
 
-/**
- * Sounding notes of a fretted voicing. `frets` lists strings 6→1;
- * -1 = muted (skipped), 0 = open, n = fret number.
- */
-export function voicingToNotes(frets: readonly number[]): string[] {
-  if (frets.length !== 6) throw new RangeError("A voicing must list exactly 6 strings");
-  const notes: string[] = [];
-  frets.forEach((fret, i) => {
-    if (fret < 0) return;
-    const openMidi = Note.midi(STANDARD_TUNING[i])!;
-    notes.push(Midi.midiToNoteName(openMidi + fret, { sharps: true }));
-  });
-  return notes;
-}
+export { voicingToNotes } from "./voicing";

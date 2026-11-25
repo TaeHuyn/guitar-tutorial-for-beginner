@@ -77,7 +77,7 @@ content/            Nội dung soạn tay (MDX + dữ liệu TS)
 src/app/            Trang (Next.js App Router) — /hoc, /hop-am, /cong-cu/*, /tong-quan, /nhat-ky …
 src/components/     UI: chord/, lesson/, tools/, progress/, ui/ (shadcn)
 src/lib/music/      Nhạc lý thuần (nốt, hợp âm, lên dây, tìm kiếm)
-src/lib/audio/      Tuner (pitchy), metronome (look-ahead), âm mẫu (Tone.js)
+src/lib/audio/      Tuner (pitchy), metronome (look-ahead), âm mẫu (Karplus-Strong đúng cao độ)
 src/lib/progress/   Kho tiến độ (khách + tài khoản, hàng đợi offline), chuỗi ngày
 src/actions/        Server Actions (Supabase)
 supabase/           Migration, seed, truy vấn chỉ tiêu

@@ -55,6 +55,12 @@
   `getProgressSnapshot` is the server action behind it.
 - **Toasts removed** (inline `role="status"` messages) to keep initial JS under budget; Supabase JS is
   lazy-loaded only when accounts are configured.
+- **Chord audio (R4 revised)**: Tone.js `PluckSynth` measured up to 14 cents flat on high notes, unstable
+  pitch on some strings and clipping when six strings summed. Replaced by an in-house Karplus-Strong
+  with all-pass fractional delay (`src/lib/audio/karplus.ts`): every note the chord library uses is within
+  ±2 cents in tests (worst measured 0.08 cents); a compressor on the bus prevents clipping; Tone.js removed.
+- **Chord page redesign**: "{chord} trên đàn guitar" with Sơ đồ / Cần đàn views, note names (solfège),
+  left-handed mirroring (remembered per device) and written fingering steps.
 - **Lighthouse CI (T100)** replaced by a Playwright CDP measurement under slow-4G throttling
   (`tests/e2e/performance.spec.ts`).
 

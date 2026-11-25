@@ -29,14 +29,14 @@ export function StrumPattern({ pattern, bpm = 70 }: Props) {
     try {
       const { playChord } = await import("@/lib/audio/pluck");
       const eighth = 60_000 / bpm / 2;
-      const down = ["E2", "B2", "E3", "G3", "B3", "E4"];
-      const up = [...down].reverse().slice(0, 4);
+      // Em chord; up-strokes catch only the top four strings, high → low.
+      const em = ["E2", "B2", "E3", "G3", "B3", "E4"];
       for (let bar = 0; bar < 2 && !stopRef.current; bar++) {
         for (let i = 0; i < steps.length && !stopRef.current; i++) {
           setActive(i);
           const s = steps[i];
-          if (s === "D") void playChord(down, "strum");
-          if (s === "U") void playChord(up, "strum");
+          if (s === "D") void playChord(em, "strum", "down");
+          if (s === "U") void playChord(em.slice(2), "strum", "up");
           if (s === "x") void playChord(["E2", "E3"], "strum");
           await new Promise((r) => setTimeout(r, eighth));
         }
