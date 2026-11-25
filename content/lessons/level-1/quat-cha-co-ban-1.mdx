@@ -1,0 +1,52 @@
+export const metadata = {
+  slug: "quat-cha-co-ban-1",
+  level: 1,
+  title: "Quạt chả cơ bản 1: bốn phách xuống",
+  type: "technique",
+  objective: "Giữ điệu quạt 4 phách xuống đều tay với Em ↔ Am ở 70 BPM trong 2 phút",
+  practiceMinutes: 15,
+  prerequisites: ["hop-am-am"],
+  chords: ["em", "am"],
+  exercises: [
+    {
+      id: "dem-to",
+      instruction: 'Vừa quạt Em vừa đếm to "một – hai – ba – bốn", quạt đúng lúc tiếng click',
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 3,
+    },
+    {
+      id: "nhan-phach-1",
+      instruction: "Quạt Em ↔ Am (mỗi hợp âm 1 ô nhịp), quạt phách 1 mạnh hơn các phách còn lại",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "2 phút liên tục, không lệch nhịp",
+    },
+  ],
+};
+
+**Quạt chả** là cách người chơi guitar Việt gọi kỹ thuật quạt dây để đệm hát. Bài đầu tiên rất đơn giản: **mỗi phách một lần quạt xuống**.
+
+<StrumPattern pattern="D-D-D-D-" bpm={70} />
+
+Mũi tên **↓** là quạt xuống. Các con số 1 2 3 4 là phách. Dấu **·** là lúc tay vung lên nhưng **không chạm dây**.
+
+## Nhịp 4/4
+
+Hầu hết các bài ballad dùng nhịp **4/4**: mỗi ô nhịp có 4 phách. Phách 1 là phách **mạnh**.
+
+<Exercise id="dem-to" />
+
+## Thêm điểm nhấn
+
+Quạt **phách 1 mạnh hơn** một chút. Bài đệm sẽ có "nhịp đập" thay vì đều đều như máy.
+
+<ChordProgression chords={["em", "am"]} />
+
+<Exercise id="nhan-phach-1" />
+
+<Tip>
+  Bấm nút **Tập với metronome** để mở máy đếm nhịp đã cài đúng tốc độ. Tập với máy đếm nhịp từ đầu
+  là thói quen quan trọng nhất của một tay đệm giỏi.
+</Tip>

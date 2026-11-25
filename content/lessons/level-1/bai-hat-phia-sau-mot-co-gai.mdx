@@ -1,0 +1,54 @@
+export const metadata = {
+  slug: "bai-hat-phia-sau-mot-co-gai",
+  level: 1,
+  title: "Bài hát 4: Phía Sau Một Cô Gái",
+  type: "song",
+  objective: "Đệm trọn bài với capo ngăn 1, vòng C – D – Em ở 70 BPM",
+  practiceMinutes: 20,
+  prerequisites: ["quat-cha-co-ban-3", "hop-am-c"],
+  chords: ["c", "d", "em", "g"],
+  songs: ["phia-sau-mot-co-gai"],
+  exercises: [
+    {
+      id: "c-d-em",
+      instruction: "Chơi vòng C → D → Em, mỗi hợp âm 1 ô nhịp (Em giữ 2 ô)",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 6,
+      passCriterion: "Chuyển C → D không bị hụt phách",
+    },
+    {
+      id: "dem-tron-bai",
+      instruction: "Kẹp capo ngăn 1 và đệm theo bản chính thức",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 10,
+    },
+  ],
+};
+
+Một trong những ballad nổi tiếng nhất của Soobin. Bài này giới thiệu một dụng cụ mới: **capo**.
+
+<SongCard id="phia-sau-mot-co-gai" />
+
+## Capo là gì?
+
+Capo là chiếc kẹp đặt ngang cần đàn để **nâng giọng của cả bài lên**. Kẹp capo ở ngăn 1 rồi bấm thế Em quen thuộc, âm thanh sẽ là Fm, đúng giọng gốc của bài.
+
+<CapoGuide />
+
+<Warning>
+  Khi có capo, mọi số ngăn trong sơ đồ hợp âm được tính **từ capo**. Hãy coi capo như lược đàn mới.
+</Warning>
+
+## Vòng hợp âm
+
+<ChordProgression chords={["c", "d", "em"]} />
+
+<Exercise id="c-d-em" />
+
+Điệp khúc có thêm G:
+
+<ChordProgression chords={["c", "d", "g", "em"]} />
+
+<Exercise id="dem-tron-bai" />

@@ -1,0 +1,80 @@
+export const metadata = {
+  slug: "doc-tab",
+  level: 0,
+  title: "Cách đọc tab",
+  type: "theory",
+  objective: "Chơi đúng một đoạn tab 1–2 dây chậm rãi theo metronome ở 60 BPM",
+  practiceMinutes: 15,
+  prerequisites: ["doc-so-do-hop-am"],
+  exercises: [
+    {
+      id: "tab-mot-day",
+      instruction: 'Chơi đoạn tab "leo thang" bên trên, mỗi phách một nốt',
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "Chơi trọn 2 lượt đúng nốt, không dừng giữa chừng",
+    },
+    {
+      id: "tab-hai-day",
+      instruction: "Chơi đoạn tab dùng dây 1 và dây 2, mỗi phách một nốt",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+    },
+  ],
+};
+
+**Tab** (tablature) là cách ghi nhạc dành riêng cho guitar. Nó cho biết **bấm dây nào, ngăn nào**, và bạn không cần biết đọc nốt nhạc.
+
+## 6 dòng = 6 dây
+
+<TabGuide />
+
+Tab có 6 dòng ngang. **Dòng trên cùng là dây 1** (nhỏ nhất), **dòng dưới cùng là dây 6**. Cách này ngược với sơ đồ hợp âm, nên hãy nhớ kỹ.
+
+Con số trên một dòng là **số ngăn** cần bấm. **0** là gảy buông. Đọc từ **trái sang phải**.
+
+<Tab title="Ví dụ: 4 nốt trên dây 1">
+  {`e|--0---1---3---1--|
+B|-----------------|
+G|-----------------|
+D|-----------------|
+A|-----------------|
+E|-----------------|`}
+</Tab>
+
+Đoạn trên: gảy dây 1 buông, rồi bấm ngăn 1, ngăn 3, ngăn 1.
+
+## Bài tập 1: leo thang trên dây 6
+
+<Tab title="Leo thang">
+  {`e|-----------------------|
+B|-----------------------|
+G|-----------------------|
+D|-----------------------|
+A|-----------------------|
+E|--0--1--2--3--2--1--0--|`}
+</Tab>
+
+Dùng ngón 1 cho ngăn 1, ngón 2 cho ngăn 2, ngón 3 cho ngăn 3. Ngón nào phụ trách ngăn đó.
+
+<Exercise id="tab-mot-day" />
+
+## Bài tập 2: hai dây
+
+<Tab title="Hai dây">
+  {`e|--0-----0-----3--1--0--|
+B|-----1-----3-----------|
+G|-----------------------|
+D|-----------------------|
+A|-----------------------|
+E|-----------------------|`}
+</Tab>
+
+<Exercise id="tab-hai-day" />
+
+<Tip>
+  Khi số nằm **thẳng hàng dọc** trên nhiều dòng, nghĩa là gảy các dây đó **cùng lúc**, giống như một
+  hợp âm.
+</Tip>

@@ -1,0 +1,52 @@
+export const metadata = {
+  slug: "bai-hat-chung-ta-khong-thuoc-ve-nhau",
+  level: 1,
+  title: "Bài hát 1: Chúng Ta Không Thuộc Về Nhau",
+  type: "song",
+  objective: "Đệm trọn bài với vòng Dm – G – Am – G và điệu D-DU-UDU ở 80 BPM, không dừng tay phải",
+  practiceMinutes: 20,
+  prerequisites: ["quat-cha-co-ban-3", "hop-am-dm"],
+  chords: ["dm", "g", "am"],
+  songs: ["chung-ta-khong-thuoc-ve-nhau"],
+  exercises: [
+    {
+      id: "vong-cham",
+      instruction: "Chơi vòng Dm → G → Am → G, mỗi hợp âm 1 ô nhịp, chỉ quạt xuống 4 phách",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "4 vòng liên tục không dừng",
+    },
+    {
+      id: "dem-tron-bai",
+      instruction: "Mở bản chính thức, đệm theo từ đầu đến cuối với điệu D-DU-UDU",
+      bpm: 80,
+      timeSignature: "4/4",
+      durationMinutes: 10,
+      passCriterion: "Đệm hết bài, lạc nhịp không quá 2 lần",
+    },
+  ],
+};
+
+Bài hát đầu tiên dễ nhất có thể: **cả bài chỉ là một vòng 4 hợp âm lặp lại**. Đây là bài lý tưởng để luyện tay phải không bao giờ dừng.
+
+<SongCard id="chung-ta-khong-thuoc-ve-nhau" />
+
+## Vòng hợp âm
+
+<ChordProgression chords={["dm", "g", "am", "g"]} />
+
+Mẹo chuyển: từ **Am** sang **G**, hãy nhấc cả 3 ngón cùng lúc. Từ **G** quay lại **Dm**, ngón 3 di chuyển ít nhất, nên đặt nó xuống trước.
+
+<Exercise id="vong-cham" />
+
+## Điệu quạt
+
+<StrumPattern pattern="D-DU-UDU" bpm={80} />
+
+<Exercise id="dem-tron-bai" />
+
+<Tip>
+  Mở bản chính thức trong một tab khác để hát theo lời. Lời bài hát có bản quyền nên trang này không
+  đăng lại.
+</Tip>

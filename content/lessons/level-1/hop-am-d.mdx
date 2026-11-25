@@ -1,0 +1,54 @@
+export const metadata = {
+  slug: "hop-am-d",
+  level: 1,
+  title: "Hợp âm D",
+  type: "technique",
+  objective: "Bấm D sạch 4 dây và chuyển D ↔ A 20 lần trong 1 phút",
+  practiceMinutes: 15,
+  prerequisites: ["hop-am-a"],
+  chords: ["d", "a"],
+  exercises: [
+    {
+      id: "d-tung-day",
+      instruction: "Bấm D, gảy từng dây từ 4 đến 1",
+      durationMinutes: 3,
+      passCriterion: "4/4 dây kêu rõ",
+    },
+    {
+      id: "d-a-chuyen",
+      instruction: "Quạt 4 phách xuống: D (1 ô) → A (1 ô), lặp lại",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "Chuyển D ↔ A ít nhất 20 lần/phút",
+    },
+  ],
+};
+
+**D** (Rê trưởng) có hình **tam giác** nhỏ ở 3 dây cao. Chỉ gảy **4 dây** thôi.
+
+<ChordDiagram chord="d" />
+
+<ChordNeck chord="d" />
+
+## Cách bấm
+
+1. Ngón **1** bấm **dây 3, ngăn 2**.
+2. Ngón **2** bấm **dây 1, ngăn 2**.
+3. Ngón **3** bấm **dây 2, ngăn 3**.
+4. Gảy từ **dây 4** (dây D buông). **Không** gảy dây 5 và 6.
+
+<Exercise id="d-tung-day" />
+
+<Tip>
+  Tay phải hơi khó "nhắm" để bắt đầu quạt từ dây 4. Hãy đặt pick ở dây 4 trước khi quạt. Lỡ chạm dây
+  5 cũng không quá tệ, nhưng tránh chạm dây 6.
+</Tip>
+
+## D ↔ A
+
+Cả hai hợp âm đều có 3 ngón quanh **ngăn 2**, nên bàn tay gần như không phải di chuyển dọc cần đàn. Hãy nhấc **cả 3 ngón cùng lúc** và đặt xuống cùng lúc, đừng đặt từng ngón một. Tập chậm và nhìn tay vài lần đầu, sau đó thử nhắm mắt.
+
+<ChordProgression chords={["d", "a"]} />
+
+<Exercise id="d-a-chuyen" />
