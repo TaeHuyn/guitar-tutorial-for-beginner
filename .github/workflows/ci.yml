@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Typecheck, lint, unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      # Includes the content check (lessons, 84 chord voicings, songs).
+      - run: npm test
+
+  e2e:
+    name: E2E (${{ matrix.accounts && 'with accounts' || 'guest only' }})
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        # false: the site as deployed without Supabase; true: local Supabase for account sync.
+        accounts: [false, true]
+    env:
+      E2E_BASE_URL: http://localhost:3000
+      E2E_SUPABASE: ${{ matrix.accounts && '1' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Supabase CLI
+        if: matrix.accounts
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Run Supabase and write .env.local
+        if: matrix.accounts
+        run: |
+          supabase start -x studio,imgproxy,edge-runtime,logflare,vector,realtime,storage-api,supavisor,postgres-meta
+          eval "$(supabase status -o env | grep -E '^(API_URL|ANON_KEY|SERVICE_ROLE_KEY)=')"
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+            echo "NEXT_PUBLIC_SITE_URL=http://localhost:3000"
+          } > .env.local
+
+      - run: npm run build
+      - name: Start production server
+        run: |
+          npx next start -p 3000 > next.log 2>&1 &
+          for i in $(seq 1 60); do
+            curl -sf -o /dev/null http://localhost:3000/ && exit 0
+            sleep 1
+          done
+          cat next.log
+          exit 1
+      - name: Playwright
+        run: npx playwright test
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ matrix.accounts && 'accounts' || 'guest' }}
+          path: |
+            playwright-report/
+            test-results/
+            next.log
+          retention-days: 7
