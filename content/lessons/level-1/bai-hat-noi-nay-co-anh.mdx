@@ -1,0 +1,59 @@
+export const metadata = {
+  slug: "bai-hat-noi-nay-co-anh",
+  level: 1,
+  title: "Bài hát 2: Nơi Này Có Anh",
+  type: "song",
+  objective: "Đệm trọn bài với điệu D-DU-DU-DU ở 72 BPM, chuyển Am → Em và G → C đúng phách",
+  practiceMinutes: 20,
+  prerequisites: ["quat-cha-co-ban-2", "hop-am-c"],
+  chords: ["dm", "g", "am", "em", "c"],
+  songs: ["noi-nay-co-anh"],
+  exercises: [
+    {
+      id: "am-em",
+      instruction: "Luyện riêng cặp Am → Em (chỉ ngón 1 nhấc lên, ngón 2 và 3 dời lên một dây)",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 4,
+    },
+    {
+      id: "dem-diep-khuc",
+      instruction: "Chơi vòng điệp khúc Dm – G – Am – Em – Dm – G – C, mỗi hợp âm 1 ô nhịp",
+      bpm: 72,
+      timeSignature: "4/4",
+      durationMinutes: 8,
+      passCriterion: "3 vòng liên tục không dừng",
+    },
+    {
+      id: "dem-tron-bai",
+      instruction: "Đệm theo bản chính thức từ đầu đến cuối",
+      bpm: 72,
+      timeSignature: "4/4",
+      durationMinutes: 8,
+    },
+  ],
+};
+
+Một bản ballad nhẹ nhàng với vòng hợp âm "quốc dân". Bạn đã gặp gần hết các hợp âm này trong bài quạt chả 2.
+
+<SongCard id="noi-nay-co-anh" />
+
+## Hai vòng hợp âm
+
+Đoạn 1:
+
+<ChordProgression chords={["dm", "g", "am", "dm", "g", "c"]} />
+
+Điệp khúc (thêm Em):
+
+<ChordProgression chords={["dm", "g", "am", "em", "dm", "g", "c"]} />
+
+<Exercise id="am-em" />
+
+<Exercise id="dem-diep-khuc" />
+
+## Điệu quạt
+
+<StrumPattern pattern="D-DUDUDU" bpm={72} />
+
+<Exercise id="dem-tron-bai" />

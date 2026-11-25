@@ -1,0 +1,52 @@
+export const metadata = {
+  slug: "quat-cha-co-ban-2",
+  level: 1,
+  title: "Quạt chả cơ bản 2: xuống – xuống lên",
+  type: "technique",
+  objective: "Giữ điệu D-DU-DU-DU đều tay với vòng C – Am – Dm – G ở 70 BPM trong 2 phút",
+  practiceMinutes: 20,
+  prerequisites: ["quat-cha-co-ban-1", "hop-am-c", "hop-am-dm"],
+  chords: ["c", "am", "dm", "g"],
+  exercises: [
+    {
+      id: "du-tren-em",
+      instruction: "Chỉ bấm Em, tập điệu D-DU-DU-DU cho tới khi tay phải tự chạy",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+    },
+    {
+      id: "vong-c-am-dm-g",
+      instruction: "Vòng C → Am → Dm → G, mỗi hợp âm 1 ô nhịp, điệu D-DU-DU-DU",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 8,
+      passCriterion: "2 phút liên tục, tay phải không dừng khi đổi hợp âm",
+    },
+  ],
+};
+
+Bây giờ ta thêm các nhát **quạt lên** (↑) vào giữa các phách. Điệu này nghe "mềm" hơn, rất hợp với ballad.
+
+<StrumPattern pattern="D-DUDUDU" bpm={70} />
+
+Đếm: **một — hai và — ba và — bốn và**. Phách 1 chỉ quạt xuống. Các phách sau quạt xuống rồi quạt lên.
+
+## Bí quyết: tay như con lắc
+
+Tay phải luôn chuyển động **xuống – lên – xuống – lên** đều đặn, kể cả lúc không chạm dây (sau phách 1). Tay **không bao giờ dừng**, chỉ khác ở chỗ có chạm dây hay không.
+
+<Exercise id="du-tren-em" />
+
+## Vòng hợp âm "quốc dân"
+
+Vòng **C – Am – Dm – G** xuất hiện trong vô số bài hát Việt và quốc tế.
+
+<ChordProgression chords={["c", "am", "dm", "g"]} />
+
+<Exercise id="vong-c-am-dm-g" />
+
+<Tip>
+  Khi đổi hợp âm, bạn được phép "ăn gian": nhát quạt lên cuối ô nhịp có thể gảy dây buông trong lúc
+  tay trái đang di chuyển. Người chơi chuyên nghiệp vẫn làm vậy!
+</Tip>

@@ -1,0 +1,59 @@
+export const metadata = {
+  slug: "hop-am-e",
+  level: 1,
+  title: "Hợp âm E và cặp chuyển E ↔ Am",
+  type: "technique",
+  objective: "Bấm E sạch 6 dây và chuyển E ↔ Am 25 lần trong 1 phút",
+  practiceMinutes: 15,
+  prerequisites: ["hop-am-am"],
+  chords: ["e", "am"],
+  exercises: [
+    {
+      id: "e-tung-day",
+      instruction: "Bấm E, gảy từng dây từ 6 đến 1",
+      durationMinutes: 3,
+      passCriterion: "6/6 dây kêu rõ, dây 3 không bị rè",
+    },
+    {
+      id: "e-am-chuyen",
+      instruction: "Quạt 4 phách xuống: E (1 ô) → Am (1 ô), lặp lại",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+    },
+    {
+      id: "e-am-mot-phut",
+      instruction: "Chuyển E ↔ Am nhanh nhất có thể trong 1 phút, đếm số lần",
+      durationMinutes: 1,
+      passCriterion: "Ít nhất 25 lần/phút",
+    },
+  ],
+};
+
+**E** (Mi trưởng) nghe sáng và mạnh hơn Em. Tin vui: nó có **cùng hình dạng với Am**, chỉ dịch lên 1 dây.
+
+<ChordDiagram chord="e" />
+
+## Cách bấm
+
+1. Ngón **1** bấm **dây 3, ngăn 1**.
+2. Ngón **2** bấm **dây 5, ngăn 2**.
+3. Ngón **3** bấm **dây 4, ngăn 2**.
+4. Gảy **cả 6 dây**.
+
+<Exercise id="e-tung-day" />
+
+## E ↔ Am: chỉ cần dời cả khối
+
+Giữ nguyên hình dáng 3 ngón và **dời cả bàn tay xuống 1 dây**: từ E sang Am. Đây là một trong những cặp chuyển dễ nhất. Hãy cảm nhận cả 3 ngón cùng nhấc lên và cùng đặt xuống.
+
+<ChordProgression chords={["e", "am"]} />
+
+<Exercise id="e-am-chuyen" />
+
+<Exercise id="e-am-mot-phut" />
+
+<Tip>
+  So sánh **E** với **Em**: Em chính là E bỏ ngón 1. Thử nhấc ngón 1 lên và đặt xuống để nghe sự
+  khác nhau giữa trưởng (vui) và thứ (buồn).
+</Tip>

@@ -1,0 +1,55 @@
+export const metadata = {
+  slug: "hop-am-g",
+  level: 1,
+  title: "Hợp âm G",
+  type: "technique",
+  objective: "Bấm G sạch cả 6 dây và chuyển G ↔ Em 25 lần trong 1 phút",
+  practiceMinutes: 15,
+  prerequisites: ["hop-am-em"],
+  chords: ["g", "em"],
+  exercises: [
+    {
+      id: "g-tung-day",
+      instruction: "Bấm G, gảy từng dây từ 6 đến 1",
+      durationMinutes: 3,
+      passCriterion: "6/6 dây kêu rõ, dây 5 không bị tắt",
+    },
+    {
+      id: "g-em-chuyen",
+      instruction: "Quạt 4 phách xuống: G (1 ô) → Em (1 ô), lặp lại",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "Chuyển G ↔ Em ít nhất 25 lần/phút",
+    },
+  ],
+  references: [{ title: "Hal Leonard Guitar Method, Book 1", author: "Will Schmid, Greg Koch" }],
+};
+
+**G** (Sol trưởng) là một trong những hợp âm quan trọng nhất trong nhạc pop. Nó trải rộng cả 6 dây, nên lúc đầu tay sẽ thấy hơi "căng".
+
+<ChordDiagram chord="g" />
+
+## Cách bấm
+
+1. Ngón **1** bấm **dây 5, ngăn 2**.
+2. Ngón **2** bấm **dây 6, ngăn 3**.
+3. Ngón **3** bấm **dây 1, ngăn 3**.
+4. Gảy **cả 6 dây**.
+
+Ngón 1 rất dễ chạm vào dây 4 làm tắt tiếng. Hãy cong ngón 1 thật nhiều và bấm bằng chóp đầu ngón.
+
+<Exercise id="g-tung-day" />
+
+<Tip>
+  Có một thế bấm G khác dùng thêm ngón 4 ở dây 2, ngăn 3. Thế này nghe đầy hơn và giúp chuyển sang C
+  dễ hơn. Hãy xem nó trong thư viện hợp âm khi đã quen thế bấm cơ bản.
+</Tip>
+
+## G ↔ Em
+
+Từ G sang Em: nhấc ngón 3 (dây 1) và ngón 2 (dây 6), rồi đặt ngón 2 và ngón 3 vào thế Em. Ngón 1 của G ở dây 5 ngăn 2 **gần như đúng chỗ** ngón 2 của Em. Hãy tận dụng điều đó.
+
+<ChordProgression chords={["g", "em"]} />
+
+<Exercise id="g-em-chuyen" />

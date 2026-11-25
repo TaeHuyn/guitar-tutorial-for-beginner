@@ -1,0 +1,61 @@
+export const metadata = {
+  slug: "hop-am-am",
+  level: 1,
+  title: "Hợp âm Am và cặp chuyển Em ↔ Am",
+  type: "technique",
+  objective: "Bấm Am sạch 5 dây và chuyển Em ↔ Am 20 lần trong 1 phút",
+  practiceMinutes: 15,
+  prerequisites: ["hop-am-em"],
+  chords: ["am", "em"],
+  exercises: [
+    {
+      id: "am-tung-day",
+      instruction: "Bấm Am, gảy từng dây từ 5 đến 1 (không gảy dây 6)",
+      durationMinutes: 3,
+      passCriterion: "5/5 dây kêu rõ",
+    },
+    {
+      id: "em-am-chuyen",
+      instruction: "Quạt Em 4 phách, chuyển sang Am 4 phách, lặp lại",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "Đổi hợp âm đúng phách 1, không dừng tay phải",
+    },
+    {
+      id: "em-am-mot-phut",
+      instruction:
+        "Không cần nhịp: chuyển Em → Am → Em… nhanh nhất có thể trong 1 phút, đếm số lần đổi",
+      durationMinutes: 1,
+      passCriterion: "Ít nhất 20 lần/phút",
+    },
+  ],
+};
+
+**Am** (La thứ) là hợp âm "anh em" của Em. Bạn sẽ gặp nó trong rất nhiều bài ballad Việt.
+
+<ChordDiagram chord="am" />
+
+## Cách bấm
+
+1. Ngón **1** (trỏ) bấm **dây 2, ngăn 1**.
+2. Ngón **2** bấm **dây 4, ngăn 2**.
+3. Ngón **3** bấm **dây 3, ngăn 2**.
+4. Gảy từ **dây 5** trở xuống. Dây 6 có chữ **X**: **không gảy**.
+
+<Exercise id="am-tung-day" />
+
+## Mẹo chuyển Em ↔ Am
+
+So sánh hai hình: ngón 2 và ngón 3 của Em đang ở dây 5 và 4. Ở Am, cả hai **dịch xuống 1 dây** (sang dây 4 và 3), còn ngón 1 thêm vào dây 2. Hai ngón di chuyển **cùng nhau như một khối**.
+
+<ChordProgression chords={["em", "am"]} />
+
+<Exercise id="em-am-chuyen" />
+
+<Tip>
+  Đổi hợp âm hơi trễ một chút cũng không sao. Quan trọng là **tay phải không được dừng**. Tay trái
+  sẽ nhanh dần lên.
+</Tip>
+
+<Exercise id="em-am-mot-phut" />

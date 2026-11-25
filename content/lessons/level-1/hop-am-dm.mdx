@@ -1,0 +1,65 @@
+export const metadata = {
+  slug: "hop-am-dm",
+  level: 1,
+  title: "Hợp âm Dm và cặp chuyển Am ↔ Dm",
+  type: "technique",
+  objective: "Bấm Dm sạch 4 dây và chuyển Am ↔ Dm 30 lần trong 1 phút",
+  practiceMinutes: 15,
+  prerequisites: ["hop-am-d"],
+  chords: ["dm", "am", "d"],
+  exercises: [
+    {
+      id: "dm-tung-day",
+      instruction: "Bấm Dm, gảy từng dây từ 4 đến 1",
+      durationMinutes: 3,
+      passCriterion: "4/4 dây kêu rõ",
+    },
+    {
+      id: "am-dm-chuyen",
+      instruction: "Quạt 4 phách xuống: Am (1 ô) → Dm (1 ô), lặp lại",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "Chuyển Am ↔ Dm ít nhất 30 lần/phút",
+    },
+    {
+      id: "d-dm",
+      instruction: "Luân phiên D (1 ô) → Dm (1 ô) để nghe sự khác nhau giữa trưởng và thứ",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 3,
+    },
+  ],
+};
+
+**Dm** (Rê thứ) là phiên bản "buồn" của D. Nó cực kỳ hay gặp, đặc biệt đi chung với Am.
+
+<ChordDiagram chord="dm" />
+
+## Cách bấm
+
+1. Ngón **1** bấm **dây 1, ngăn 1**.
+2. Ngón **2** bấm **dây 3, ngăn 2**.
+3. Ngón **3** bấm **dây 2, ngăn 3**.
+4. Gảy từ **dây 4**.
+
+<Exercise id="dm-tung-day" />
+
+## Am ↔ Dm: giữ ngón làm điểm tựa
+
+Đây là cặp chuyển rất phổ biến trong ballad. Hãy để ý: ngón 2 và ngón 3 của Dm và Am đều nằm ở vùng ngăn 2–3, nên quãng di chuyển rất ngắn. Hãy chuyển thật **nhẹ tay**, không nhấc ngón lên cao.
+
+<ChordProgression chords={["am", "dm"]} />
+
+<Exercise id="am-dm-chuyen" />
+
+## Trưởng và thứ
+
+<ChordProgression chords={["d", "dm"]} />
+
+<Exercise id="d-dm" />
+
+<Tip>
+  Đến đây bạn đã biết 6 hợp âm: Em, Am, E, A, D, Dm. Chỉ còn G và C nữa là đủ bộ 8 hợp âm để đệm
+  hàng trăm bài hát.
+</Tip>

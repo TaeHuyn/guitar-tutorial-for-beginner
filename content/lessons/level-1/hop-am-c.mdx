@@ -1,0 +1,70 @@
+export const metadata = {
+  slug: "hop-am-c",
+  level: 1,
+  title: "Hợp âm C và cặp chuyển G ↔ C",
+  type: "technique",
+  objective: "Bấm C sạch 5 dây và chuyển G ↔ C 30 lần trong 1 phút",
+  practiceMinutes: 20,
+  prerequisites: ["hop-am-g", "hop-am-am"],
+  chords: ["c", "g", "am"],
+  exercises: [
+    {
+      id: "c-tung-day",
+      instruction: "Bấm C, gảy từng dây từ 5 đến 1",
+      durationMinutes: 3,
+      passCriterion: "5/5 dây kêu rõ, dây 3 và dây 1 không bị tắt",
+    },
+    {
+      id: "c-am-chuyen",
+      instruction: "Chuyển C ↔ Am: chỉ ngón 3 di chuyển (dây 5 ↔ dây 3), ngón 1 và 2 đứng yên",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 3,
+    },
+    {
+      id: "g-c-chuyen",
+      instruction: "Quạt 4 phách xuống: G (1 ô) → C (1 ô), lặp lại",
+      bpm: 60,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "Chuyển G ↔ C ít nhất 30 lần/phút",
+    },
+  ],
+};
+
+**C** (Đô trưởng) hoàn thành bộ 8 hợp âm cơ bản. Cặp **G ↔ C** là cặp chuyển bạn sẽ dùng nhiều nhất, nên hãy dành thời gian cho nó.
+
+<ChordDiagram chord="c" />
+
+## Cách bấm
+
+1. Ngón **1** bấm **dây 2, ngăn 1**.
+2. Ngón **2** bấm **dây 4, ngăn 2**.
+3. Ngón **3** bấm **dây 5, ngăn 3**.
+4. Gảy từ **dây 5**. Không gảy dây 6.
+
+<Exercise id="c-tung-day" />
+
+## C ↔ Am: chỉ một ngón di chuyển
+
+So sánh C với Am: ngón 1 và ngón 2 **giữ nguyên**! Chỉ có ngón 3 di chuyển giữa dây 5 (C) và dây 3 (Am).
+
+<ChordProgression chords={["c", "am"]} />
+
+<Exercise id="c-am-chuyen" />
+
+## G ↔ C: cặp quan trọng nhất
+
+Đây là cặp chuyển khó nhất cấp 1, vì cả 3 ngón đều đổi chỗ. Cách tập:
+
+1. Bấm G. Nhấc **cả 3 ngón** lên khoảng 1 cm, giữ hình dáng bàn tay.
+2. "Lơ lửng" trên thế C, rồi đặt **cả 3 ngón cùng lúc**.
+3. Làm thật chậm 10 lần, rồi mới bật metronome.
+
+<ChordProgression chords={["g", "c"]} />
+
+<Exercise id="g-c-chuyen" />
+
+<Warning>
+  Đừng tăng tốc khi chuyển còn rè. Chậm mà sạch rồi mới nhanh. Mỗi tuần tăng 5 BPM là đủ.
+</Warning>

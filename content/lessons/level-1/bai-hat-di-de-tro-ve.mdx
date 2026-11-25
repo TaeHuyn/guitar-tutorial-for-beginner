@@ -1,0 +1,49 @@
+export const metadata = {
+  slug: "bai-hat-di-de-tro-ve",
+  level: 1,
+  title: "Bài hát 3: Đi Để Trở Về",
+  type: "song",
+  objective: "Đệm trọn bài với vòng G – D – Em – C và điệu D-DU-UDU ở 76 BPM",
+  practiceMinutes: 20,
+  prerequisites: ["quat-cha-co-ban-3"],
+  chords: ["g", "d", "em", "c"],
+  songs: ["di-de-tro-ve"],
+  exercises: [
+    {
+      id: "vong-g-d-em-c",
+      instruction: "Chơi vòng G → D → Em → C, mỗi hợp âm 1 ô nhịp",
+      bpm: 66,
+      timeSignature: "4/4",
+      durationMinutes: 6,
+      passCriterion: "4 vòng liên tục, không rè dây",
+    },
+    {
+      id: "dem-tron-bai",
+      instruction: "Đệm theo bản chính thức từ đầu đến cuối",
+      bpm: 76,
+      timeSignature: "4/4",
+      durationMinutes: 10,
+    },
+  ],
+};
+
+Một bài hát vui, tràn đầy năng lượng. Cả bài xoay quanh **vòng G – D – Em – C** mà bạn đã tập ở bài quạt chả 3.
+
+<SongCard id="di-de-tro-ve" />
+
+## Vòng hợp âm
+
+<ChordProgression chords={["g", "d", "em", "c"]} />
+
+<Exercise id="vong-g-d-em-c" />
+
+<Tip>
+  Chuyển **D → Em** là chỗ dễ vấp nhất. Nhấc cả 3 ngón của D lên, rồi đặt ngón 2 và ngón 3 vào ngăn
+  2 của dây 5 và dây 4.
+</Tip>
+
+## Điệu quạt
+
+<StrumPattern pattern="D-DU-UDU" bpm={76} />
+
+<Exercise id="dem-tron-bai" />

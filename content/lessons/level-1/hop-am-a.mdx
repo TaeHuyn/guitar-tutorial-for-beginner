@@ -1,0 +1,51 @@
+export const metadata = {
+  slug: "hop-am-a",
+  level: 1,
+  title: "Hợp âm A",
+  type: "technique",
+  objective: "Bấm A sạch 5 dây với 3 ngón cùng ngăn 2, chuyển A ↔ E 20 lần trong 1 phút",
+  practiceMinutes: 15,
+  prerequisites: ["hop-am-e"],
+  chords: ["a", "e"],
+  exercises: [
+    {
+      id: "a-tung-day",
+      instruction: "Bấm A, gảy từng dây từ 5 đến 1. Chú ý dây 1 phải kêu",
+      durationMinutes: 3,
+      passCriterion: "5/5 dây kêu rõ",
+    },
+    {
+      id: "a-e-chuyen",
+      instruction: "Quạt 4 phách xuống: A (1 ô) → E (1 ô), lặp lại",
+      bpm: 70,
+      timeSignature: "4/4",
+      durationMinutes: 5,
+      passCriterion: "Chuyển A ↔ E ít nhất 20 lần/phút",
+    },
+  ],
+};
+
+**A** (La trưởng) có 3 ngón xếp hàng ở **cùng ngăn 2**. Ngăn hơi chật, nên cần sắp ngón một chút.
+
+<ChordDiagram chord="a" />
+
+## Cách bấm
+
+1. Ngón **1** bấm **dây 4, ngăn 2**.
+2. Ngón **2** bấm **dây 3, ngăn 2**.
+3. Ngón **3** bấm **dây 2, ngăn 2**.
+4. Gảy từ **dây 5**. **Không** gảy dây 6.
+
+Ba ngón không thể cùng đứng sát phím đàn. Hãy xếp chúng **chéo nhẹ**: ngón 1 lùi về sau một chút, ngón 3 sát phím nhất.
+
+<Exercise id="a-tung-day" />
+
+<Tip>
+  Nếu dây 1 bị tắt tiếng, có thể bụng ngón 3 đang chạm vào nó. Dựng ngón 3 cao hơn và cong hơn.
+</Tip>
+
+## A ↔ E
+
+<ChordProgression chords={["a", "e"]} />
+
+<Exercise id="a-e-chuyen" />
