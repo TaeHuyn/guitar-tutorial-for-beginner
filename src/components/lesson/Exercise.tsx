@@ -17,7 +17,7 @@ export function Exercise({ exercise }: { exercise: ExerciseData }) {
     <section
       data-exercise={exercise.id}
       aria-label={`${vi.learn.exercises}: ${exercise.instruction}`}
-      className="border-primary/30 bg-primary/5 my-5 rounded-xl border-2 p-4"
+      className="not-prose border-primary/30 bg-primary/5 my-5 rounded-xl border-2 p-4"
     >
       <div className="flex items-start gap-3">
         <Dumbbell aria-hidden className="text-primary mt-1 size-5 shrink-0" />

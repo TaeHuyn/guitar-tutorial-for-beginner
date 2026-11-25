@@ -48,7 +48,7 @@ export function StrumPattern({ pattern, bpm = 70 }: Props) {
   }
 
   return (
-    <div className="bg-card my-4 rounded-xl border p-4" data-strum-pattern={pattern}>
+    <div className="not-prose bg-card my-4 rounded-xl border p-4" data-strum-pattern={pattern}>
       <ol className="flex flex-wrap justify-center gap-1" aria-label={`Điệu quạt ${pattern}`}>
         {steps.map((s, i) => (
           <li

@@ -118,31 +118,62 @@
   }
 }
 
-/* Long-form lesson content. */
-.prose-lesson {
-  line-height: 1.7;
-}
-.prose-lesson h2 {
-  @apply mt-10 mb-3 text-xl font-semibold;
-}
-.prose-lesson h3 {
-  @apply mt-6 mb-2 text-lg font-semibold;
-}
-.prose-lesson p {
-  @apply my-3;
-}
-.prose-lesson ul {
-  @apply my-3 list-disc pl-6;
-}
-.prose-lesson ol {
-  @apply my-3 list-decimal pl-6;
-}
-.prose-lesson li {
-  @apply my-1;
-}
-.prose-lesson strong {
-  @apply font-semibold;
-}
-.prose-lesson a {
-  @apply text-primary underline underline-offset-2;
+/*
+ * Long-form lesson content. Lives in the components layer so component utilities win, and
+ * skips anything inside `.not-prose` (callouts, exercise cards, diagrams…), which lay
+ * themselves out.
+ */
+@layer components {
+  .prose-lesson {
+    line-height: 1.7;
+  }
+  .prose-lesson :where(h2):not(:where(.not-prose, .not-prose *)) {
+    @apply mt-10 mb-3 text-xl font-semibold;
+  }
+  .prose-lesson :where(h3):not(:where(.not-prose, .not-prose *)) {
+    @apply mt-6 mb-2 text-lg font-semibold;
+  }
+  .prose-lesson :where(p):not(:where(.not-prose, .not-prose *)) {
+    @apply my-3;
+  }
+  .prose-lesson :where(ul):not(:where(.not-prose, .not-prose *)) {
+    @apply my-3 list-disc pl-6;
+  }
+  .prose-lesson :where(ol):not(:where(.not-prose, .not-prose *)) {
+    @apply my-3 list-decimal pl-6;
+  }
+  .prose-lesson :where(li):not(:where(.not-prose, .not-prose *)) {
+    @apply my-1;
+  }
+  .prose-lesson :where(strong) {
+    @apply font-semibold;
+  }
+  .prose-lesson :where(a):not(:where(.not-prose, .not-prose *)) {
+    @apply text-primary underline underline-offset-2;
+  }
+
+  /* Tables: bordered cells with padding; scroll sideways inside the table on narrow screens. */
+  .prose-lesson :where(.table-scroll) {
+    @apply focus-visible:ring-ring my-5 max-w-full overflow-x-auto rounded-xl border outline-none focus-visible:ring-2;
+  }
+  .prose-lesson :where(table):not(:where(.not-prose, .not-prose *)) {
+    @apply w-full text-sm;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .prose-lesson :where(th, td):not(:where(.not-prose, .not-prose *)) {
+    @apply border-b px-3 py-2 text-left align-top;
+  }
+  .prose-lesson :where(th + th, td + td):not(:where(.not-prose, .not-prose *)) {
+    @apply border-l;
+  }
+  .prose-lesson :where(thead th):not(:where(.not-prose, .not-prose *)) {
+    @apply bg-muted font-semibold whitespace-nowrap;
+  }
+  .prose-lesson :where(tbody tr:last-child td):not(:where(.not-prose, .not-prose *)) {
+    @apply border-b-0;
+  }
+  .prose-lesson :where(tbody td:first-child):not(:where(.not-prose, .not-prose *)) {
+    @apply font-medium whitespace-nowrap;
+  }
 }

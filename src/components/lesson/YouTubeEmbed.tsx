@@ -13,7 +13,7 @@ export function YouTubeEmbed({ video, title }: { video: Video; title: string }) 
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <figure className="my-6">
+    <figure className="not-prose my-6">
       <div className="bg-muted relative aspect-video overflow-hidden rounded-xl">
         {loaded ? (
           <iframe

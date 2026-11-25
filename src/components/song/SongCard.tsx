@@ -8,7 +8,7 @@ export function SongCard({ song }: { song: Song }) {
   return (
     <Link
       href={`/bai-hat/${song.id}`}
-      className="bg-card hover:bg-muted my-3 flex items-center gap-3 rounded-xl border p-4"
+      className="not-prose bg-card hover:bg-muted my-3 flex items-center gap-3 rounded-xl border p-4"
     >
       <span className="bg-primary/10 text-primary flex size-11 shrink-0 items-center justify-center rounded-full">
         <Music aria-hidden className="size-5" />

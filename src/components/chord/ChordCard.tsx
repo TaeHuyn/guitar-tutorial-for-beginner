@@ -18,7 +18,7 @@ export function ChordCard({ chord, voicingIndex = 0, size = "md", linkToDetail =
   const notes = voicingToNotes(voicing.frets);
   const diagram = <ChordDiagram chord={chord} voicingIndex={voicingIndex} size={size} />;
   return (
-    <div className="bg-card my-4 inline-flex flex-col items-center gap-2 rounded-xl border p-3">
+    <div className="not-prose bg-card my-4 inline-flex flex-col items-center gap-2 rounded-xl border p-3">
       {linkToDetail ? (
         <Link href={`/hop-am/${chord.id}`} className="rounded-md focus-visible:ring-2">
           {diagram}

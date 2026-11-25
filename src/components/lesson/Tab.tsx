@@ -13,7 +13,7 @@ function toText(node: ReactNode): string {
 export function Tab({ children, title }: { children: ReactNode; title?: string }) {
   const text = toText(children).replace(/^\n+|\n+$/g, "");
   return (
-    <figure className="my-4">
+    <figure className="not-prose my-4">
       {title && <figcaption className="mb-1 text-sm font-medium">{title}</figcaption>}
       <pre
         tabIndex={0}

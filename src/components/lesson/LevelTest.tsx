@@ -45,7 +45,7 @@ export function LevelTest({ level, criteria }: Props) {
   const done = criteria.every((c) => checked.includes(c.id));
 
   return (
-    <section data-level-test className="bg-card my-6 rounded-xl border p-4">
+    <section data-level-test className="not-prose bg-card my-6 rounded-xl border p-4">
       <h2 className="text-lg font-semibold">{vi.learn.levelTestTitle}</h2>
       <p className="text-muted-foreground mt-1 text-sm">{vi.learn.levelTestIntro}</p>
       <ul className="mt-4 space-y-2">

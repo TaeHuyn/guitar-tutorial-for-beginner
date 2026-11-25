@@ -7,6 +7,7 @@ import { createElement, type ReactNode } from "react";
 import { ChordCard } from "@/components/chord/ChordCard";
 import { ChordProgression } from "@/components/chord/ChordProgression";
 import { Tip, Warning } from "@/components/lesson/Callout";
+import { LessonTable } from "@/components/lesson/LessonTable";
 import { Exercise } from "@/components/lesson/Exercise";
 import { LevelTest } from "@/components/lesson/LevelTest";
 import { StrumPattern } from "@/components/lesson/StrumPattern";
@@ -55,6 +56,7 @@ export default async function LessonPage({ params }: { params: Promise<Params> }
     Tip,
     Warning,
     Tab,
+    table: LessonTable,
     StrumPattern,
     ChordDiagram: ({ chord, voicing }: { chord: string; voicing?: number }) => {
       const c = getChord(chord);
