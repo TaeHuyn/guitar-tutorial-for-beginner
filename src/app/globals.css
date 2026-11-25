@@ -168,7 +168,7 @@
     @apply border-l;
   }
   .prose-lesson :where(thead th):not(:where(.not-prose, .not-prose *)) {
-    @apply bg-muted font-semibold whitespace-nowrap;
+    @apply bg-muted align-bottom font-semibold;
   }
   .prose-lesson :where(tbody tr:last-child td):not(:where(.not-prose, .not-prose *)) {
     @apply border-b-0;
