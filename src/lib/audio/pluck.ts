@@ -33,7 +33,7 @@ function bufferFor(ctx: AudioContext, note: string): AudioBuffer {
   const key = `${note}@${ctx.sampleRate}`;
   let buf = cache.get(key);
   if (!buf) {
-    const data = renderPluck(noteToFrequency(note), ctx.sampleRate, { duration: 3 });
+    const data = renderPluck(noteToFrequency(note), ctx.sampleRate, { duration: 4 });
     buf = ctx.createBuffer(1, data.length, ctx.sampleRate);
     buf.copyToChannel(data, 0);
     cache.set(key, buf);

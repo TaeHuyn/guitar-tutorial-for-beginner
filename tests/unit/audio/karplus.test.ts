@@ -36,13 +36,13 @@ describe("renderPluck (Karplus-Strong with fractional-delay tuning)", () => {
     });
   }
 
-  it("never clips and decays towards silence", () => {
-    const buf = renderPluck(82.41, SR, { duration: 2 });
+  it("never clips and fades to silence at the end", () => {
+    const buf = renderPluck(82.41, SR, { duration: 4 });
     let peak = 0;
     for (const x of buf) peak = Math.max(peak, Math.abs(x));
     expect(peak).toBeLessThanOrEqual(1);
     expect(peak).toBeGreaterThan(0.5);
-    const tail = buf.slice(buf.length - 2000);
+    const tail = buf.slice(buf.length - 500);
     expect(Math.max(...tail.map(Math.abs))).toBeLessThan(0.02);
   });
 

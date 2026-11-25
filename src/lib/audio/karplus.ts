@@ -40,9 +40,11 @@ export function renderPluck(
 ): Float32Array<ArrayBuffer> {
   const duration = opts.duration ?? 2.5;
   // Low strings ring longer than high ones, like a real acoustic guitar.
-  const t60 = opts.t60 ?? Math.max(1.2, Math.min(4.5, 4.5 * Math.pow(110 / freq, 0.45)));
-  const brightness = opts.brightness ?? 0.55;
-  const pickPosition = opts.pickPosition ?? 0.13;
+  const t60 = opts.t60 ?? Math.max(3, Math.min(11, 10 * Math.pow(110 / freq, 0.5)));
+  // Defaults tuned against recordings of a steel-string acoustic: a soft pick attack, plucked
+  // around a fifth of the string length (warmer than near the bridge).
+  const brightness = opts.brightness ?? 0.25;
+  const pickPosition = opts.pickPosition ?? 0.22;
   const level = opts.level ?? 0.9;
   const rand = mulberry32(opts.seed ?? Math.round(freq * 1000));
 
@@ -101,6 +103,25 @@ export function renderPluck(
     idx = idx + 1 === n ? 0 : idx + 1;
   }
 
+  // High partials of a real string die away much faster than the fundamental: a low-pass whose
+  // cutoff falls from a bright attack to a mellow sustain (two cascaded one-pole stages).
+  const fEnd = Math.max(900, 3.5 * freq);
+  const fStart = Math.max(fEnd, 3600);
+  const tau = 0.12 * sampleRate;
+  let s1 = 0;
+  let s2 = 0;
+  for (let t = 0; t < total; t++) {
+    const fc = fEnd + (fStart - fEnd) * Math.exp(-t / tau);
+    const a = Math.exp((-2 * Math.PI * fc) / sampleRate);
+    s1 = (1 - a) * out[t] + a * s1;
+    s2 = (1 - a) * s1 + a * s2;
+    out[t] = s2;
+  }
+
+  // Wooden body: the air and top-plate resonances of a dreadnought add warmth in the lows.
+  peaking(out, sampleRate, 105, 4, 1.2);
+  peaking(out, sampleRate, 210, 3, 1.4);
+
   // Gentle DC blocker, short fade-in (no click) and fade-out at the end.
   let x1 = 0;
   let y1 = 0;
@@ -113,8 +134,9 @@ export function renderPluck(
   }
   const fadeIn = Math.min(total, Math.round(0.002 * sampleRate));
   for (let t = 0; t < fadeIn; t++) out[t] *= t / fadeIn;
-  const fadeOut = Math.min(total, Math.round(0.08 * sampleRate));
-  for (let t = 0; t < fadeOut; t++) out[total - 1 - t] *= t / fadeOut;
+  // Long, smooth release so cutting the buffer is inaudible.
+  const fadeOut = Math.min(total, Math.round(0.35 * sampleRate));
+  for (let t = 0; t < fadeOut; t++) out[total - 1 - t] *= (t / fadeOut) ** 2;
 
   let max = 0;
   for (const v of out) max = Math.max(max, Math.abs(v));
@@ -123,4 +145,31 @@ export function renderPluck(
     for (let t = 0; t < total; t++) out[t] *= g;
   }
   return out;
+}
+
+/** In-place RBJ peaking EQ (gain in dB). */
+function peaking(buf: Float32Array, sampleRate: number, f0: number, gainDb: number, q: number) {
+  const A = Math.pow(10, gainDb / 40);
+  const w0 = (2 * Math.PI * f0) / sampleRate;
+  const alpha = Math.sin(w0) / (2 * q);
+  const cos = Math.cos(w0);
+  const a0 = 1 + alpha / A;
+  const b0 = (1 + alpha * A) / a0;
+  const b1 = (-2 * cos) / a0;
+  const b2 = (1 - alpha * A) / a0;
+  const a1 = (-2 * cos) / a0;
+  const a2 = (1 - alpha / A) / a0;
+  let x1 = 0;
+  let x2 = 0;
+  let y1 = 0;
+  let y2 = 0;
+  for (let t = 0; t < buf.length; t++) {
+    const x = buf[t];
+    const y = b0 * x + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2;
+    x2 = x1;
+    x1 = x;
+    y2 = y1;
+    y1 = y;
+    buf[t] = y;
+  }
 }
