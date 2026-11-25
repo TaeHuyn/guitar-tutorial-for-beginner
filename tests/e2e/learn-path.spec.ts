@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test.describe("US1 — learning path without an account", () => {
   test("home → first level-0 lesson in under 30 seconds, no sign-in", async ({ page }) => {

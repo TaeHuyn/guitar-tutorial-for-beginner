@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ArrowLeft, GraduationCap } from "lucide-react";
 import { ChordExplorer } from "@/components/chord/ChordExplorer";
+import { PageSkeleton } from "@/components/PageSkeleton";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { getAllChords, getChord, getLesson, lessonHref } from "@/content/loader";
@@ -27,7 +29,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     : {};
 }
 
-export default async function ChordPage({ params }: { params: Promise<Params> }) {
+// Params are read inside Suspense so the page shell can be prefetched once for every URL.
+export default function ChordPage({ params }: { params: Promise<Params> }) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <ChordContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ChordContent({ params }: { params: Promise<Params> }) {
   const chord = getChord((await params).id);
   if (!chord) notFound();
   const lesson = chord.lessonSlug ? getLesson(chord.lessonSlug) : undefined;

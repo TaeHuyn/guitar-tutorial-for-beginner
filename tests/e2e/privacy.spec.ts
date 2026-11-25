@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 /** Constitution IV / FR-017 / FR-036. */
 test.describe("privacy", () => {

@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 /**
  * Constitution V / SC-006 budget, measured under emulated 4G on a production build:
@@ -7,8 +7,14 @@ import { expect, test } from "@playwright/test";
 test.describe("performance budget", () => {
   test.skip(!process.env.E2E_BASE_URL && !process.env.E2E_PROD, "Run against `next start`");
 
-  test("lesson page: LCP < 2.5 s on 4G, initial JS < 200 KB", async ({ page, browserName }, testInfo) => {
-    test.skip(browserName !== "chromium" || testInfo.project.name !== "mobile", "CDP throttling, mobile only");
+  test("lesson page: LCP < 2.5 s on 4G, initial JS < 200 KB", async ({
+    page,
+    browserName,
+  }, testInfo) => {
+    test.skip(
+      browserName !== "chromium" || testInfo.project.name !== "mobile",
+      "CDP throttling, mobile only",
+    );
     const cdp = await page.context().newCDPSession(page);
     await cdp.send("Network.enable");
     await cdp.send("Network.emulateNetworkConditions", {
@@ -43,8 +49,13 @@ test.describe("performance budget", () => {
     );
     const totalJs = [...jsBytes.values()].reduce((a, b) => a + b, 0);
     testInfo.annotations.push({ type: "LCP (ms)", description: lcp.toFixed(0) });
-    testInfo.annotations.push({ type: "initial JS (KB)", description: (totalJs / 1024).toFixed(1) });
-    console.log(`LCP ${lcp.toFixed(0)} ms, initial JS ${(totalJs / 1024).toFixed(1)} KB over ${jsBytes.size} files`);
+    testInfo.annotations.push({
+      type: "initial JS (KB)",
+      description: (totalJs / 1024).toFixed(1),
+    });
+    console.log(
+      `LCP ${lcp.toFixed(0)} ms, initial JS ${(totalJs / 1024).toFixed(1)} KB over ${jsBytes.size} files`,
+    );
 
     expect(lcp).toBeGreaterThan(0);
     expect(lcp).toBeLessThan(2500);

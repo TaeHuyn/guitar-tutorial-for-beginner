@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ExternalLink, Info } from "lucide-react";
 import { ChordProgression } from "@/components/chord/ChordProgression";
 import { StrumPattern } from "@/components/lesson/StrumPattern";
+import { PageSkeleton } from "@/components/PageSkeleton";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { getAllSongs, getChord, getSong } from "@/content/loader";
@@ -24,7 +26,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 }
 
 /** Song page: chords, strum, tempo, capo and an official link — never lyrics (FR-005). */
-export default async function SongPage({ params }: { params: Promise<Params> }) {
+// Params are read inside Suspense so the page shell can be prefetched once for every URL.
+export default function SongPage({ params }: { params: Promise<Params> }) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <SongContent params={params} />
+    </Suspense>
+  );
+}
+
+async function SongContent({ params }: { params: Promise<Params> }) {
   const song = getSong((await params).id);
   if (!song) notFound();
   const chords = songChords(song)

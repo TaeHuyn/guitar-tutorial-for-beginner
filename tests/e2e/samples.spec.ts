@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 import { SAMPLE_CENTS_ERROR, SAMPLE_MIDI_RANGE } from "../../src/lib/audio/sample-tuning";
 
 /**

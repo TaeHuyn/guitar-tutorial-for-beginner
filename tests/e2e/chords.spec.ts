@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test.describe("US4 — chord library", () => {
   test("search 'bm' finds Bm with a play button on its page", async ({ page }) => {
@@ -44,7 +44,9 @@ test.describe("US4 — chord library", () => {
     await expect(empty.getByRole("link", { name: "B7" })).toBeVisible();
   });
 
-  test("chord page: switch to fretboard, show note names, left-handed, remembered", async ({ page }) => {
+  test("chord page: switch to fretboard, show note names, left-handed, remembered", async ({
+    page,
+  }) => {
     await page.goto("/hop-am/c");
     const explorer = page.locator("[data-chord-explorer]");
     await expect(explorer.locator("[data-voicing]")).not.toHaveCount(0);

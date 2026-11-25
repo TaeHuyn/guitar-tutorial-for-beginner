@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock, Target } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
-import { createElement, type ReactNode } from "react";
+import { createElement, Suspense, type ReactNode } from "react";
 import { ChordCard } from "@/components/chord/ChordCard";
 import { ChordProgression } from "@/components/chord/ChordProgression";
 import { Tip, Warning } from "@/components/lesson/Callout";
@@ -23,6 +23,7 @@ import { Tab } from "@/components/lesson/Tab";
 import { YouTubeEmbed } from "@/components/lesson/YouTubeEmbed";
 import { MarkCompleteButton } from "@/components/progress/MarkCompleteButton";
 import { SongCard } from "@/components/song/SongCard";
+import { PageSkeleton } from "@/components/PageSkeleton";
 import { Badge } from "@/components/ui/badge";
 import {
   getAdjacentLessons,
@@ -50,7 +51,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return { title: lesson.title, description: lesson.objective };
 }
 
-export default async function LessonPage({ params }: { params: Promise<Params> }) {
+// Params are read inside Suspense so the page shell can be prefetched once for every URL.
+export default function LessonPage({ params }: { params: Promise<Params> }) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <LessonContent params={params} />
+    </Suspense>
+  );
+}
+
+async function LessonContent({ params }: { params: Promise<Params> }) {
   const { level: levelParam, slug } = await params;
   const lesson = getLesson(slug);
   const Content = getLessonComponent(slug);

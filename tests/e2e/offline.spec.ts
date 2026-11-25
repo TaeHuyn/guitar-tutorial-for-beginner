@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 /** FR-034/035: installable, and the practice tools work offline after the first visit. Needs a production build. */
 test.describe("PWA & offline", () => {

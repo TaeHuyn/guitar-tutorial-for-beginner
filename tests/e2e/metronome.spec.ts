@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./fixtures";
 
 async function beatSequence(page: Page, count: number): Promise<string[]> {
   const seen: string[] = [];

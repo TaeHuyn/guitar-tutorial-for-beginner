@@ -39,7 +39,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi" className={`${sans.variable} ${mono.variable} h-full antialiased`}>
+    <html
+      lang="vi"
+      // Browser extensions (dark-mode, translators…) often add attributes to <html> before React hydrates.
+      suppressHydrationWarning
+      className={`${sans.variable} ${mono.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
         <a
           href="#noi-dung"
