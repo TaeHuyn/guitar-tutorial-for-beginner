@@ -8,6 +8,14 @@ import { ChordCard } from "@/components/chord/ChordCard";
 import { ChordProgression } from "@/components/chord/ChordProgression";
 import { Tip, Warning } from "@/components/lesson/Callout";
 import { LessonTable } from "@/components/lesson/LessonTable";
+import { CapoGuide } from "@/components/illustrations/CapoGuide";
+import { ChordChartGuide } from "@/components/illustrations/ChordChartGuide";
+import { ChordNeck } from "@/components/illustrations/ChordNeck";
+import { FingerNumbers } from "@/components/illustrations/FingerNumbers";
+import { GuitarAnatomy } from "@/components/illustrations/GuitarAnatomy";
+import { NeckGrip, PickGrip, StrumGuide } from "@/components/illustrations/PickAndStrum";
+import { TabGuide } from "@/components/illustrations/TabGuide";
+import { TuningPegs } from "@/components/illustrations/TuningPegs";
 import { Exercise } from "@/components/lesson/Exercise";
 import { LevelTest } from "@/components/lesson/LevelTest";
 import { StrumPattern } from "@/components/lesson/StrumPattern";
@@ -57,6 +65,19 @@ export default async function LessonPage({ params }: { params: Promise<Params> }
     Warning,
     Tab,
     table: LessonTable,
+    GuitarAnatomy,
+    FingerNumbers,
+    TuningPegs,
+    ChordChartGuide,
+    TabGuide,
+    PickGrip,
+    StrumGuide,
+    NeckGrip,
+    CapoGuide,
+    ChordNeck: ({ chord }: { chord: string }) => {
+      const c = getChord(chord);
+      return c ? <ChordNeck chord={c} /> : null;
+    },
     StrumPattern,
     ChordDiagram: ({ chord, voicing }: { chord: string; voicing?: number }) => {
       const c = getChord(chord);

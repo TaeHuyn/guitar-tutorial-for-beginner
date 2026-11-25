@@ -75,7 +75,17 @@ export function Fretboard({
     v.fingers[i] === 1;
 
   return (
-    <div ref={ref} className={cn("overflow-x-auto rounded-xl", className)}>
+    <div
+      ref={ref}
+      // Scrolls sideways on narrow screens; focusable so keyboard users can scroll it too.
+      tabIndex={0}
+      role="region"
+      aria-label={`Cần đàn hợp âm ${chord.name} (cuộn ngang được)`}
+      className={cn(
+        "focus-visible:ring-ring overflow-x-auto rounded-xl outline-none focus-visible:ring-2",
+        className,
+      )}
+    >
       <svg
         role="img"
         aria-label={`Cần đàn: hợp âm ${chord.name}, thế bấm ${voicingIndex + 1}${leftHanded ? " (thuận tay trái)" : ""}`}

@@ -22,6 +22,17 @@ export const ALLOWED_MDX_COMPONENTS = new Set([
   "Tip",
   "Warning",
   "LevelTest",
+  // Illustrations (src/components/illustrations)
+  "GuitarAnatomy",
+  "FingerNumbers",
+  "TuningPegs",
+  "ChordChartGuide",
+  "TabGuide",
+  "PickGrip",
+  "StrumGuide",
+  "NeckGrip",
+  "CapoGuide",
+  "ChordNeck",
 ]);
 
 export interface RawContent {
@@ -142,9 +153,11 @@ export function validateContent(raw: RawContent): ValidationResult {
         if (!placed.has(id))
           errors.push(`${l.slug}: exercise "${id}" is never placed with <Exercise id="${id}" />`);
       }
-      for (const m of l.__body.matchAll(/<ChordDiagram\s+chord=["']([^"']+)["']/g)) {
+      for (const m of l.__body.matchAll(/<(?:ChordDiagram|ChordNeck)\s+chord=["']([^"']+)["']/g)) {
         if (!chordIds.has(m[1]))
-          errors.push(`${l.slug}: <ChordDiagram chord="${m[1]}"> is not a known chord`);
+          errors.push(
+            `${l.slug}: <${m[0].slice(1).split(/\s/)[0]} chord="${m[1]}"> is not a known chord`,
+          );
       }
       for (const m of l.__body.matchAll(/<SongCard\s+id=["']([^"']+)["']/g)) {
         if (!songIds.has(m[1]))
