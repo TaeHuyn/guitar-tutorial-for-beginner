@@ -117,7 +117,7 @@ export function ChordDiagram({
         {Array.from({ length: 6 }, (_, i) => (
           <line
             key={`string-${i}`}
-            data-string={6 - i}
+            data-string-line={6 - i}
             x1={xOf(i)}
             x2={xOf(i)}
             y1={TOP}

@@ -9,6 +9,7 @@ import { voicingToNotes } from "@/lib/music/voicing";
 import { cn } from "@/lib/utils";
 import { ChordDiagram, type DiagramLabels } from "./ChordDiagram";
 import { Fretboard, fretboardFocus } from "./Fretboard";
+import { animatePluck, soundingStrings } from "./pluck-animation";
 
 type View = "diagram" | "fretboard";
 interface Prefs {
@@ -68,6 +69,7 @@ export function ChordExplorer({ chord }: { chord: Chord }) {
   const [prefs, setPrefs] = useState<Prefs>(DEFAULT_PREFS);
   const [selected, setSelected] = useState(0);
   const neckRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   // On narrow screens the neck scrolls: bring the fingered frets into view.
   useEffect(() => {
@@ -96,7 +98,15 @@ export function ChordExplorer({ chord }: { chord: Chord }) {
 
   async function play(index: number, mode: "strum" | "arpeggio" = "strum") {
     const { playChord } = await import("@/lib/audio/pluck");
-    await playChord(voicingToNotes(chord.voicings[index].frets), mode);
+    const { frets } = chord.voicings[index];
+    const delays = await playChord(voicingToNotes(frets), mode);
+    // Light up the drawing that is on screen for this voicing, string by string.
+    const root = rootRef.current;
+    const svg =
+      prefs.view === "fretboard"
+        ? root?.querySelector("[data-fretboard]")
+        : root?.querySelector(`[data-voicing="${index}"] svg`);
+    animatePluck(svg, soundingStrings(frets), delays);
   }
 
   function choose(index: number) {
@@ -105,7 +115,7 @@ export function ChordExplorer({ chord }: { chord: Chord }) {
   }
 
   return (
-    <div data-chord-explorer>
+    <div data-chord-explorer ref={rootRef}>
       {/* Toolbar */}
       <div
         className="flex flex-wrap items-center gap-2"

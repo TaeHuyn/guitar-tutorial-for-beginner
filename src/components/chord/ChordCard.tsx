@@ -3,6 +3,7 @@ import type { Chord } from "@/content/schema";
 import { voicingToNotes } from "@/lib/music/notes";
 import { ChordDiagram } from "./ChordDiagram";
 import { ChordPlayButton } from "./ChordPlayButton";
+import { soundingStrings } from "./pluck-animation";
 
 interface Props {
   chord: Chord;
@@ -18,7 +19,10 @@ export function ChordCard({ chord, voicingIndex = 0, size = "md", linkToDetail =
   const notes = voicingToNotes(voicing.frets);
   const diagram = <ChordDiagram chord={chord} voicingIndex={voicingIndex} size={size} />;
   return (
-    <div className="not-prose bg-card my-4 inline-flex flex-col items-center gap-2 rounded-xl border p-3">
+    <div
+      data-chord-card
+      className="not-prose bg-card my-4 inline-flex flex-col items-center gap-2 rounded-xl border p-3"
+    >
       {linkToDetail ? (
         <Link href={`/hop-am/${chord.id}`} className="rounded-md focus-visible:ring-2">
           {diagram}
@@ -26,7 +30,12 @@ export function ChordCard({ chord, voicingIndex = 0, size = "md", linkToDetail =
       ) : (
         diagram
       )}
-      <ChordPlayButton notes={notes} chordName={chord.name} compact={size === "sm"} />
+      <ChordPlayButton
+        notes={notes}
+        strings={soundingStrings(voicing.frets)}
+        chordName={chord.name}
+        compact={size === "sm"}
+      />
     </div>
   );
 }

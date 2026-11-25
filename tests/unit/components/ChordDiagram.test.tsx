@@ -51,7 +51,7 @@ describe("ChordDiagram", () => {
 
   it("draws 6 strings", () => {
     const { container } = render(<ChordDiagram chord={G} />);
-    expect(container.querySelectorAll("line[data-string]")).toHaveLength(6);
+    expect(container.querySelectorAll("line[data-string-line]")).toHaveLength(6);
   });
 
   it("places finger dots on the right frets with finger numbers 2-1-3", () => {
@@ -83,8 +83,8 @@ describe("ChordDiagram", () => {
 
   it("mirrors strings for left-handed players", () => {
     const xOf = (c: HTMLElement) =>
-      [...c.querySelectorAll("line[data-string]")].map((l) => [
-        l.getAttribute("data-string"),
+      [...c.querySelectorAll("line[data-string-line]")].map((l) => [
+        l.getAttribute("data-string-line"),
         Number(l.getAttribute("x1")),
       ]);
     const right = render(<ChordDiagram chord={G} />).container;

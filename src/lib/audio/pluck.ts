@@ -135,14 +135,15 @@ export function setVolume(volume: number) {
 /**
  * Plays chord notes low→high. strum: 30 ms apart; arpeggio: 120 ms apart (contracts/audio-modules.md).
  * `direction: "up"` plays high→low (up-strokes when demonstrating strum patterns).
+ * Resolves with when each note starts sounding, in seconds from now (same order as `notes`).
  */
 export async function playChord(
   notes: readonly string[],
   mode: StrumMode = "strum",
   direction: "down" | "up" = "down",
   options: { gapSeconds?: number } = {},
-): Promise<void> {
-  if (notes.length === 0) return;
+): Promise<number[]> {
+  if (notes.length === 0) return [];
   const ctx = await getAudioContext();
   const gap = options.gapSeconds ?? (mode === "strum" ? STRUM_GAP : ARPEGGIO_GAP);
   const buffers = await Promise.all(notes.map((n) => bufferFor(ctx, n)));
@@ -152,6 +153,13 @@ export async function playChord(
   const order = buffers.map((sound, i) => ({ sound, voice: i }));
   if (direction === "up") order.reverse();
   order.forEach(({ sound, voice }, i) => startVoice(ctx, voice, sound, start + i * gap));
+  // When each note becomes audible, in seconds from now (in `notes` order) — for animations.
+  const latency = ctx.outputLatency || ctx.baseLatency || 0;
+  const delays = new Array<number>(notes.length);
+  order.forEach(({ voice }, i) => {
+    delays[voice] = Math.max(0, start + i * gap - ctx.currentTime + latency);
+  });
+  return delays;
 }
 
 /** Plays a single reference note, e.g. for ear tuning. */
